@@ -18,6 +18,7 @@ import { Doctors, GenderOptions, IdentificationTypes } from "@/constants";
 import { Label } from "../ui/label";
 import { SelectItem } from "../ui/select";
 import Image from "next/image";
+import FileUplaoder from "../FileUploader";
 
 const RegisterForm = ({ user }: { user: User }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -270,6 +271,18 @@ const RegisterForm = ({ user }: { user: User }) => {
           name="identificationNumber"
           label="Identification number"
           placeholder="013458235"
+        />
+
+        <CustomFormField
+          control={form.control}
+          fieldType={FormFieldType.SKELETON}
+          name="identificationDocument"
+          label="A scanned copy of your identification document"
+          renderSkeleton={(field) => (
+            <FormControl>
+              <FileUplaoder files={field.value} onChange={field.onChange} />
+            </FormControl>
+          )}
         />
 
         <SubmitButton isLoading={isLoading}>Get started </SubmitButton>
