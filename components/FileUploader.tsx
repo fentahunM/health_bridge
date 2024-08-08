@@ -1,3 +1,5 @@
+"use client";
+
 import { convertFileToUrl } from "@/lib/utils";
 import Image from "next/image";
 import React, { useCallback } from "react";
