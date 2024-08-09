@@ -70,7 +70,7 @@ export const registerPatient = async ({
       ID.unique(),
       {
         identificationDocumentId: file?.$id || null,
-        identificationDocumentUrl: `https://cloud.appwrite.io/v1/storage/buckets/66b0b3fe0001cdc1616f/files/${file?.$id}/view?project=${PROJECT_ID}`,
+        identificationDocumentUrl: `https://cloud.appwrite.io/v1/storage/buckets/66b0b3fe0001cdc1616f/files/${file?.$id}/view?project=66b0ab1d00155084d842`,
         ...patient,
       }
     );
