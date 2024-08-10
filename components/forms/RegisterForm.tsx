@@ -8,7 +8,6 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import CustomFormField, { FormFieldType } from "@/components/CustomFormField";
-// import { FormFieldType } from "./PatientForm";
 
 import { Form, FormControl } from "@/components/ui/form";
 import { Label } from "@/components/ui/label";
@@ -25,7 +24,6 @@ import { PatientFormValidation } from "@/lib/validation";
 
 import "react-datepicker/dist/react-datepicker.css";
 import "react-phone-number-input/style.css";
-// import CustomFormField, { FormFieldType } from "../CustomFormField";
 import { FileUploader } from "../FileUploader";
 import SubmitButton from "../SubmitButton";
 
@@ -53,8 +51,6 @@ const RegisterForm = ({ user }: { user: User }) => {
       values.identificationDocument &&
       values.identificationDocument?.length > 0
     ) {
-      console.log("Handling identification document...");
-
       const blobFile = new Blob([values.identificationDocument[0]], {
         type: values.identificationDocument[0].type,
       });
@@ -91,13 +87,9 @@ const RegisterForm = ({ user }: { user: User }) => {
         privacyConsent: values.privacyConsent,
       };
 
-      console.log("Patient data ready for submission:", patient);
-
       const newPatient = await registerPatient(patient);
 
       if (newPatient) {
-        console.log("Patient registered successfully:", newPatient);
-
         router.push(`/patients/${user.$id}/new-appointment`);
       } else {
         console.error("Failed to register patient.");
