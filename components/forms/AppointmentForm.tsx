@@ -11,12 +11,12 @@ import SubmitButton from "@/components/SubmitButton";
 import "react-datepicker/dist/react-datepicker.css";
 
 import { useState } from "react";
-import { UserFormValidation } from "@/lib/validation";
-import { createUser } from "@/lib/actions/patient.actions";
 import { useRouter } from "next/navigation";
 import { Doctors } from "@/constants";
 import { SelectItem } from "../ui/select";
 import Image from "next/image";
+import { getAppointmentSchema } from "@/lib/validation";
+import { createAppointent } from "@/lib/actions/appointment.actions";
 
 const AppointmentForm = ({
   userId,
@@ -29,6 +29,7 @@ const AppointmentForm = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const AppointmentFormValidation = getAppointmentSchema(type);
 
   const form = useForm<z.infer<typeof AppointmentFormValidation>>({
     resolver: zodResolver(AppointmentFormValidation),
@@ -58,18 +59,23 @@ const AppointmentForm = ({
     }
 
     try {
-      if (status === "create" && patientId) {
+      if (type === "create" && patientId) {
         const appointmentData = {
           userId,
           patient: patientId,
           primaryPhysician: values.primaryPhysician,
           schedule: new Date(values.schedule),
-          reason: values.reason,
+          reason: values.reason!,
           note: values.note,
           status: status as Status,
         };
+        const appointment = await createAppointent(appointmentData);
+        if (appointment) {
+          router.push(
+            `/patients/${userId}/new-appointment/success?appointmentId=${appointment.$id}`
+          );
+        }
       }
-      const appointment = await createAppointment(appointmentData);
     } catch (error) {
       console.log("Error from patient form", error);
     } finally {
