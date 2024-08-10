@@ -1,7 +1,7 @@
 import { ID, Query } from "node-appwrite";
 
 import {
-  database,
+  databases,
   BUCKET_ID,
   DATABASE_ID,
   ENDPOINT,
@@ -39,6 +39,18 @@ export const getUser = async (userId: string) => {
     console.log(error);
   }
 };
+export const getPatient = async (userId: string) => {
+  try {
+    const patients = await databases.listDocuments(
+      DATABASE_ID!,
+      PATIENT_COLLECTION_ID!,
+      [Query.equal("userId", userId)]
+    );
+    return parseStringify(patients.documents[0]);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 // REGISTER PATIENT
 export const registerPatient = async ({
@@ -62,7 +74,7 @@ export const registerPatient = async ({
     }
 
     // Create new patient document -> https://appwrite.io/docs/references/cloud/server-nodejs/databases#createDocument
-    const newPatient = await database.createDocument(
+    const newPatient = await databases.createDocument(
       "66b0ad370037a2156f46",
       "66b0ad51001030e126ed",
       ID.unique(),
