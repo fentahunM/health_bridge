@@ -12,6 +12,7 @@ import { useState } from "react";
 import { UserFormValidation } from "@/lib/validation";
 import { createUser } from "@/lib/actions/patient.actions";
 import { useRouter } from "next/navigation";
+import "react-phone-number-input/style.css";
 
 const PatientForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -29,9 +30,6 @@ const PatientForm = () => {
   async function onSubmit(data: z.infer<typeof UserFormValidation>) {
     setIsLoading(true);
     try {
-      // const userData = { email, name, phone };
-      console.log(data);
-
       const user = await createUser(data);
       if (user) {
         router.push(`/patients/${user.$id}/register`);
