@@ -13,16 +13,6 @@ import { UserFormValidation } from "@/lib/validation";
 import { createUser } from "@/lib/actions/patient.actions";
 import { useRouter } from "next/navigation";
 
-// export enum FormFieldType {
-//   INPUT = "input",
-//   TEXTAREA = "textarea",
-//   CHECKBOX = "checkbox",
-//   SELECT = "select",
-//   PHONE_INPUT = "phoneInput",
-//   DATE_PICKER = "datePicker",
-//   SKELETON = "skeleton",
-// }
-
 const PatientForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();

@@ -28,7 +28,7 @@ client
     "fc82f14e143c9393cec46d01b04c23222212baf2e977c0162f1f2ebaa7ebad19629d919c9dba9b0bd68f9c27f5cc8baeb3704918c031718d283016798f0cb7db3bc752ba83fa147b1b9e180d1275621812182bdf42bf2442f653ebcbc00f16eaef060c4ba7b8e29c5baa15cd8237652f7e352c6d5198706990e2115987907d0e"
   );
 
-export const database = new sdk.Databases(client);
+export const databases = new sdk.Databases(client);
 export const messaging = new sdk.Messaging(client);
 export const storage = new sdk.Storage(client);
 export const users = new sdk.Users(client);
