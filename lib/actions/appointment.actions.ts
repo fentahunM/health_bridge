@@ -107,7 +107,7 @@ export const updateAppointment = async ({
 
     if (!updatedAppointment) throw Error("Appointment nof found!");
 
-    const smsMessage = `Greetings from CarePulse. ${
+    const smsMessage = `Greetings from HealthBridge. ${
       type === "schedule"
         ? `Your appointment is confirmed for ${
             formatDateTime(appointment.schedule!).dateTime
