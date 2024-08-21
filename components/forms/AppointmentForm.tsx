@@ -176,7 +176,7 @@ export const AppointmentForm = ({
 
             <div
               className={`flex flex-col gap-6  ${
-                type === "create" && "xl:flex-row"
+                type === "create" || (type === "schedule" && "xl:flex-row")
               }`}
             >
               <CustomFormField
@@ -192,7 +192,7 @@ export const AppointmentForm = ({
                 fieldType={FormFieldType.TEXTAREA}
                 control={form.control}
                 name="note"
-                label="Comments/notes"
+                label="Notes"
                 placeholder="Prefer afternoon appointments, if possible"
                 disabled={type === "schedule"}
               />
